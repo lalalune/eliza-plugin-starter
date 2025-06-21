@@ -1,88 +1,131 @@
-# Eliza Plugin Starter Template
+# Eliza Plugin Starter
 
-This repository provides a starter template for creating plugins for the [Eliza](https://github.com/ai16z/eliza) AI agent framework. It includes example implementations for search functionality using Tavily and Exa APIs.
+Welcome to the Eliza Plugin Starter documentation! This README provides comprehensive information on how to install, configure, and use the `eliza-plugin-starter` plugin for ElizaOS. 
 
-## Prerequisites
+## Table of Contents
 
-- Node.js 23+
-- pnpm
-- TypeScript knowledge
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Usage Examples](#usage-examples)
+- [Actions and Providers](#actions-and-providers)
+- [Troubleshooting](#troubleshooting)
+- [Contributing](#contributing)
 
-## Getting Started
+## Installation
 
-1. Clone this repository:
-```bash
-git clone https://github.com/yourusername/eliza-plugin-starter.git
-cd eliza-plugin-starter
+To install the `eliza-plugin-starter`, you need to have Node.js and npm installed on your machine. Follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/eliza-plugin-starter.git
+   cd eliza-plugin-starter
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Ensure that you have the following dependencies in your `package.json`:
+   ```json
+   {
+     "dependencies": {
+       "@ai16z/client-direct": "^1.0.0",
+       "@ai16z/eliza": "^1.0.0",
+       "@ai16z/plugin-0g": "^1.0.0",
+       "dotenv": "^10.0.0",
+       "@babel/parser": "^7.0.0"
+     }
+   }
+   ```
+
+## Configuration
+
+The `eliza-plugin-starter` does not require any specific environment variables to be set. However, you can configure the plugin by modifying the plugin's settings in your ElizaOS configuration file.
+
+### Example Configuration
+
+```json
+{
+  "plugins": [
+    {
+      "name": "eliza-plugin-starter",
+      "enabled": true,
+      "settings": {
+        "exampleSetting": "value"
+      }
+    }
+  ]
+}
 ```
 
-2. Install dependencies:
-```bash
-pnpm install
+## Usage Examples
+
+Here are some practical examples of how to use the `eliza-plugin-starter` plugin within your ElizaOS application.
+
+### Basic Usage
+
+```typescript
+import { Eliza } from '@ai16z/eliza';
+import { ElizaPluginStarter } from 'eliza-plugin-starter';
+
+const eliza = new Eliza();
+eliza.use(ElizaPluginStarter);
+
+// Start the Eliza agent
+eliza.start();
 ```
 
-3. Compile the TypeScript code:
-```bash
-pnpm tsc
+### Advanced Usage with Custom Settings
+
+You can also pass custom settings to the plugin when initializing it.
+
+```typescript
+import { Eliza } from '@ai16z/eliza';
+import { ElizaPluginStarter } from 'eliza-plugin-starter';
+
+const eliza = new Eliza();
+eliza.use(ElizaPluginStarter, {
+  customSetting: 'customValue'
+});
+
+// Start the Eliza agent
+eliza.start();
 ```
 
-4. Run the project using the 'direct' client:
-```bash
-pnpm exec node --loader ts-node/esm ./src/scripts/load-with-plugin.ts --characters=./characters/eternalai.character.json
-```
+## Actions and Providers
 
-**Note:** Only the 'direct' client will work within this repo since it uses mocked capabilities of the real client. Plugins developed here can be directly transposed into the main Eliza repository.
+### Actions
 
-## Project Overview
+Currently, the `eliza-plugin-starter` does not define any specific actions. However, it is designed to be extensible, allowing you to add custom actions as needed.
 
-This starter template is designed to work with the 'direct' client within this repository due to the mocked capabilities of the real client. Plugins developed here are fully compatible with the main Eliza repository and can be directly transposed.
+### Providers
 
-## Project Structure
+Similar to actions, the plugin does not provide any specific providers out of the box. You can implement your own providers to extend the functionality of the plugin.
 
-```
-src/
-  ├── plugins/
-  │   ├── tavily/     # Tavily search plugin implementation
-  │   └── exa/        # Exa search plugin implementation
-  ├── common/         # Shared utilities and types
-  └── index.ts        # Main entry point
-```
+## Troubleshooting
 
-## Creating a Plugin
+If you encounter any issues while using the `eliza-plugin-starter`, consider the following troubleshooting steps:
 
-See the [Plugin Development Guide](docs/PLUGIN_GUIDE.md) for detailed instructions on creating your own plugin.
+1. **Check Dependencies**: Ensure that all required dependencies are installed correctly. Run `npm install` to install any missing packages.
 
-## Running the Project
+2. **Review Configuration**: Double-check your ElizaOS configuration file for any syntax errors or misconfigurations.
 
-You can run the project using the following command:
+3. **Consult Logs**: Look at the console logs for any error messages that may provide insight into the issue.
 
-```bash
-pnpm exec node --loader ts-node/esm ./src/scripts/load-with-plugin.ts --characters=./characters/eternalai.character.json
-```
-
-**Alternatively,** to simplify this process, use the predefined script:
-
-```bash
-pnpm mock-eliza --characters=./characters/eternalai.character.json
-```
-
-This script will prompt for a comma-separated list of character files to load.
-
-**Note:** The 'mock-eliza' script uses the 'direct' client because the project contains mocked capabilities of the real client.
-
-## Example Plugins
-
-This template includes two example plugin implementations:
-
-1. Tavily Search Plugin: Demonstrates web search capabilities using the Tavily API
-2. Exa Search Plugin: Shows how to integrate with the Exa search API
-
-Check the individual plugin directories for specific documentation and usage instructions.
+4. **Update Packages**: Ensure that you are using the latest version of the plugin and its dependencies. Run `npm update` to update your packages.
 
 ## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details.
+We welcome contributions to the `eliza-plugin-starter`! If you would like to contribute, please follow these guidelines:
 
-## License
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix.
+3. Make your changes and commit them with clear messages.
+4. Push your branch and create a pull request.
 
-MIT
+For any questions or discussions, feel free to open an issue in the repository.
+
+---
+
+Thank you for using the `eliza-plugin-starter`! We hope this documentation helps you get started with your ElizaOS plugin development. If you have any further questions, please reach out to the community or check the official ElizaOS documentation.
